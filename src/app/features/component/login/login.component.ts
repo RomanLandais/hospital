@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { confirmEqualValidators } from './Validators/confirm-equal.validator';
+import { ComServerService } from '../../../shared/services/com-server.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,10 @@ export class LoginComponent implements OnInit {
   signInForm!: FormGroup;
   signUpForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private comServerService: ComServerService
+  ) {}
 
   ngOnInit() {
     this.signInForm = this.fb.group({
@@ -51,6 +55,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSignUpSubmit() {
-    console.log(this.signUpForm.value);
+    this.comServerService
+      .sendData(this.signInForm.value, 'signin')
+      .subscribe((response) => {
+        console.log(response);
+        alert('Inscription réussie');
+      });
   }
 }
