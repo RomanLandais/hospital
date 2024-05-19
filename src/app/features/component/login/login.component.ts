@@ -8,6 +8,7 @@ import {
 import { confirmEqualValidators } from './Validators/confirm-equal.validator';
 import { ComServerService } from '../../../shared/services/com-server.service';
 import { SharedModule } from '../../../shared/shared.module';
+import { TokenService } from '../../../shared/services/auth/token.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private comServerService: ComServerService
+    private comServerService: ComServerService,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit() {
@@ -59,7 +61,16 @@ export class LoginComponent implements OnInit {
     this.comServerService
       .sendDataSignUp(this.signUpForm.value, 'signup')
       .subscribe({
-        next: (response) => console.log('Response:', response),
+        next: (response) => {
+          console.log('Response:', response);
+          // Extraire le token CSRF de la réponse
+          const csrfToken = response.csrfToken;
+
+          // Stocker le token CSRF dans une variable ou un service
+          // Par exemple, vous pouvez le stocker dans le service AuthService
+          this.tokenService.setCsrfToken(csrfToken);
+          console.log('CSRF Token:', this.tokenService.getCsrfToken());
+        },
         error: (error) => {
           console.error('Error:', error);
           if (error.error) {
