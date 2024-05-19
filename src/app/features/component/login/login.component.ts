@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -8,11 +7,12 @@ import {
 } from '@angular/forms';
 import { confirmEqualValidators } from './Validators/confirm-equal.validator';
 import { ComServerService } from '../../../shared/services/com-server.service';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, SharedModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -55,11 +55,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSignUpSubmit() {
+    console.log(this.signUpForm.value);
     this.comServerService
-      .sendData(this.signInForm.value, 'signin')
-      .subscribe((response) => {
-        console.log(response);
-        alert('Inscription réussie');
+      .sendDataSignUp(this.signUpForm.value, 'signup')
+      .subscribe({
+        next: (response) => console.log('Response:', response),
+        error: (error) => {
+          console.error('Error:', error);
+          if (error.error) {
+            console.error('Error details:', error.error);
+          }
+        },
+        complete: () => alert('Inscription réussie'),
       });
   }
 }

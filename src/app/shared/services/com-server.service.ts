@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,11 +7,23 @@ import { Injectable } from '@angular/core';
 export class ComServerService {
   constructor(private http: HttpClient) {}
 
-  // Méthode générique pour envoyer des données
-  sendData(data: any, endpoint: string) {
+  sendDataSignUp(data: any, endpoint: string) {
     // Concaténez l'endpoint fourni à l'URL de base
-    const url = `https://localhost:3000/api/${endpoint}`;
-    // Envoyez les données à l'URL construite
+    const url = `https://localhost:3000/api/hospital/${endpoint}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<any>(url, data);
+  }
+
+  sendData(data: any, endpoint: string, authToken: string) {
+    const url = `https://localhost:3000/api/hospital/${endpoint}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    });
+
     return this.http.post<any>(url, data);
   }
 }

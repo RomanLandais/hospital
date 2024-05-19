@@ -28,6 +28,7 @@ img {
   font-weight: bold;
   background-color: #4aa3a2 !important;
   border: 2px solid black;
+  font-size: 0.9em;
 }
 
 .navbar-light {
