@@ -54,20 +54,44 @@ export class LoginComponent implements OnInit {
 
   onSignInSubmit() {
     console.log(this.signInForm.value);
+    this.comServerService
+      .sendDataLogin(this.signInForm.value, 'signIn')
+      .subscribe({
+        next: (response) => {
+          console.log('Response:', response);
+
+          // Extraire le token CSRF de la réponse
+          const csrfToken = response.csrfToken;
+
+          // Stocker le token CSRF dans le service tokenService
+          this.tokenService.setCsrfToken(csrfToken);
+          console.log('CSRF Token:', this.tokenService.getCsrfToken());
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          if (error.status === 401) {
+            alert(
+              'Utilisateur non trouvé ou mot de passe incorrect. Veuillez réessayer.'
+            );
+          } else {
+            if (error.error) {
+              console.error('Error details:', error.error);
+            }
+          }
+        },
+        complete: () => alert('Connecté avec succès'),
+      });
   }
 
   onSignUpSubmit() {
     console.log(this.signUpForm.value);
     this.comServerService
-      .sendDataSignUp(this.signUpForm.value, 'signup')
+      .sendDataLogin(this.signUpForm.value, 'signup')
       .subscribe({
         next: (response) => {
           console.log('Response:', response);
-          // Extraire le token CSRF de la réponse
           const csrfToken = response.csrfToken;
 
-          // Stocker le token CSRF dans une variable ou un service
-          // Par exemple, vous pouvez le stocker dans le service AuthService
           this.tokenService.setCsrfToken(csrfToken);
           console.log('CSRF Token:', this.tokenService.getCsrfToken());
         },

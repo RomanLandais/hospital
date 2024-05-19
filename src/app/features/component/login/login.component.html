@@ -1,270 +1,274 @@
-<div class="form-container">
-  <!-- Connexion -->
-  <form
-    [formGroup]="signInForm"
-    (ngSubmit)="onSignInSubmit()"
-    class="sign in novalidate"
-  >
-    <h4>Connexion</h4>
-    <div class="row mb-3">
-      <label for="inputEmail2" class="col-sm-5 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input
-          type="email"
-          formControlName="email"
-          class="form-control"
-          id="inputEmail2"
-          required
-        />
-        <div
-          *ngIf="
-            signInForm.controls['email'].touched &&
-            signInForm.controls['email'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signInForm.controls['email'].errors?.['required']">
-            Email requis
-          </div>
-          <div *ngIf="signInForm.controls['email'].errors?.['email']">
-            Email n'est pas valide
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="inputPassword2" class="col-sm-5 col-form-label"
-        >Mot de passe</label
-      >
-      <div class="col-sm-10">
-        <input
-          type="password"
-          formControlName="password"
-          class="form-control"
-          id="inputPassword2"
-          required
-        />
-        <div
-          *ngIf="
-            signInForm.controls['password'].touched &&
-            signInForm.controls['password'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signInForm.controls['password'].errors?.['required']">
-            Mot de passe requis
-          </div>
-        </div>
-      </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="signInForm.invalid"
+<body>
+  <div class="form-container">
+    <!-- Connexion -->
+    <form
+      [formGroup]="signInForm"
+      (ngSubmit)="onSignInSubmit()"
+      class="sign in novalidate"
     >
-      Connexion
-    </button>
-  </form>
+      <h4>Connexion</h4>
+      <div class="row mb-3">
+        <label for="inputEmail2" class="col-sm-5 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="inputEmail2"
+            required
+          />
+          <div
+            *ngIf="
+              signInForm.controls['email'].touched &&
+              signInForm.controls['email'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signInForm.controls['email'].errors?.['required']">
+              Email requis
+            </div>
+            <div *ngIf="signInForm.controls['email'].errors?.['email']">
+              Email n'est pas valide
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="inputPassword2" class="col-sm-5 col-form-label"
+          >Mot de passe</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="inputPassword2"
+            required
+          />
+          <div
+            *ngIf="
+              signInForm.controls['password'].touched &&
+              signInForm.controls['password'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signInForm.controls['password'].errors?.['required']">
+              Mot de passe requis
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="signInForm.invalid"
+      >
+        Connexion
+      </button>
+    </form>
 
-  <!-- Inscription -->
-  <form
-    [formGroup]="signUpForm"
-    (ngSubmit)="onSignUpSubmit()"
-    class="sign up"
-    novalidate
-  >
-    <h4>Inscription</h4>
-    <div class="row mb-3">
-      <label for="inputEmail3" class="col-sm-5 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input
-          type="email"
-          formControlName="email"
-          class="form-control"
-          id="inputEmail3"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['email'].touched &&
-            signUpForm.controls['email'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signUpForm.controls['email'].errors?.['required']">
-            Email requis
-          </div>
-          <div *ngIf="signUpForm.controls['email'].errors?.['email']">
-            Email n'est pas valide
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="inputConfirmEmail3" class="col-sm-5 col-form-label"
-        >Confirmer Email</label
-      >
-      <div class="col-sm-10">
-        <input
-          type="email"
-          formControlName="confirmEmail"
-          class="form-control"
-          id="inputConfirmEmail3"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['confirmEmail'].touched &&
-            signUpForm.controls['confirmEmail'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signUpForm.controls['confirmEmail'].errors?.['required']">
-            Email requis
-          </div>
-          <div *ngIf="signUpForm.controls['confirmEmail'].errors?.['email']">
-            Email n'est pas valide
-          </div>
-          <div
-            *ngIf="signUpForm.controls['confirmEmail'].errors?.['confirmEqual']"
-          >
-            Les emails ne correspondent pas
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="lastName" class="col-sm-5 col-form-label">Nom</label>
-      <div class="col-sm-10">
-        <input
-          type="text"
-          formControlName="lastName"
-          class="form-control"
-          id="lastName"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['lastName'].touched &&
-            signUpForm.controls['lastName'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signUpForm.controls['lastName'].errors?.['required']">
-            Nom requis
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="firstName" class="col-sm-5 col-form-label">Prénom</label>
-      <div class="col-sm-10">
-        <input
-          type="text"
-          formControlName="firstName"
-          class="form-control"
-          id="firstName"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['firstName'].touched &&
-            signUpForm.controls['firstName'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signUpForm.controls['firstName'].errors?.['required']">
-            Prénom requis
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="address" class="col-sm-5 col-form-label">Adresse</label>
-      <div class="col-sm-10">
-        <input
-          type="text"
-          formControlName="address"
-          class="form-control"
-          id="address"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['address'].touched &&
-            signUpForm.controls['address'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signUpForm.controls['address'].errors?.['required']">
-            Adresse requise
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="inputPassword3" class="col-sm-5 col-form-label"
-        >Mot de passe</label
-      >
-      <div class="col-sm-10">
-        <input
-          type="password"
-          formControlName="password"
-          class="form-control"
-          id="inputPassword3"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['password'].touched &&
-            signUpForm.controls['password'].invalid
-          "
-          class="text-danger"
-        >
-          <div *ngIf="signUpForm.controls['password'].errors?.['required']">
-            Mot de passe requis
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="inputConfirmPassword3" class="col-sm-8 col-form-label"
-        >Confirmer mot de passe</label
-      >
-      <div class="col-sm-10">
-        <input
-          type="password"
-          formControlName="confirmPassword"
-          class="form-control"
-          id="inputConfirmPassword3"
-          required
-        />
-        <div
-          *ngIf="
-            signUpForm.controls['confirmPassword'].touched &&
-            signUpForm.controls['confirmPassword'].invalid
-          "
-          class="text-danger"
-        >
-          <div
-            *ngIf="signUpForm.controls['confirmPassword'].errors?.['required']"
-          >
-            Confirmer mot de passe requis
-          </div>
-          <div
-            *ngIf="signUpForm.controls['confirmPassword'].errors?.['confirmEqual']"
-          >
-            Les mots de passe ne correspondent pas
-          </div>
-        </div>
-      </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="signUpForm.invalid"
+    <!-- Inscription -->
+    <form
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSignUpSubmit()"
+      class="sign up"
+      novalidate
     >
-      Inscription
-    </button>
-  </form>
-</div>
+      <h4>Inscription</h4>
+      <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-5 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="inputEmail3"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['email'].touched &&
+              signUpForm.controls['email'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signUpForm.controls['email'].errors?.['required']">
+              Email requis
+            </div>
+            <div *ngIf="signUpForm.controls['email'].errors?.['email']">
+              Email n'est pas valide
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="inputConfirmEmail3" class="col-sm-5 col-form-label"
+          >Confirmer Email</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="email"
+            formControlName="confirmEmail"
+            class="form-control"
+            id="inputConfirmEmail3"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['confirmEmail'].touched &&
+              signUpForm.controls['confirmEmail'].invalid
+            "
+            class="text-danger"
+          >
+            <div
+              *ngIf="signUpForm.controls['confirmEmail'].errors?.['required']"
+            >
+              Email requis
+            </div>
+            <div *ngIf="signUpForm.controls['confirmEmail'].errors?.['email']">
+              Email n'est pas valide
+            </div>
+            <div
+              *ngIf="signUpForm.controls['confirmEmail'].errors?.['confirmEqual']"
+            >
+              Les emails ne correspondent pas
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="lastName" class="col-sm-5 col-form-label">Nom</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            formControlName="lastName"
+            class="form-control"
+            id="lastName"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['lastName'].touched &&
+              signUpForm.controls['lastName'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signUpForm.controls['lastName'].errors?.['required']">
+              Nom requis
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="firstName" class="col-sm-5 col-form-label">Prénom</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            formControlName="firstName"
+            class="form-control"
+            id="firstName"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['firstName'].touched &&
+              signUpForm.controls['firstName'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signUpForm.controls['firstName'].errors?.['required']">
+              Prénom requis
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="address" class="col-sm-5 col-form-label">Adresse</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            formControlName="address"
+            class="form-control"
+            id="address"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['address'].touched &&
+              signUpForm.controls['address'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signUpForm.controls['address'].errors?.['required']">
+              Adresse requise
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="inputPassword3" class="col-sm-5 col-form-label"
+          >Mot de passe</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="inputPassword3"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['password'].touched &&
+              signUpForm.controls['password'].invalid
+            "
+            class="text-danger"
+          >
+            <div *ngIf="signUpForm.controls['password'].errors?.['required']">
+              Mot de passe requis
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="inputConfirmPassword3" class="col-sm-8 col-form-label"
+          >Confirmer mot de passe</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            class="form-control"
+            id="inputConfirmPassword3"
+            required
+          />
+          <div
+            *ngIf="
+              signUpForm.controls['confirmPassword'].touched &&
+              signUpForm.controls['confirmPassword'].invalid
+            "
+            class="text-danger"
+          >
+            <div
+              *ngIf="signUpForm.controls['confirmPassword'].errors?.['required']"
+            >
+              Confirmer mot de passe requis
+            </div>
+            <div
+              *ngIf="signUpForm.controls['confirmPassword'].errors?.['confirmEqual']"
+            >
+              Les mots de passe ne correspondent pas
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="signUpForm.invalid"
+      >
+        Inscription
+      </button>
+    </form>
+  </div>
+</body>

@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 export class ComServerService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  sendDataSignUp(data: any, endpoint: string) {
+  sendDataLogin(data: any, endpoint: string) {
     // Concaténez l'endpoint fourni à l'URL de base
     const url = `https://localhost:3000/api/hospital/${endpoint}`;
     const headers = new HttpHeaders({
