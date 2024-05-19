@@ -1,1 +1,66 @@
-<p>new-stay works!</p>
+<form class="row g-3" id="hospitalForm">
+  <div class="raw">
+    <div class="col-md-4">
+      <label for="startDate" class="form-label">Date de début séjour</label>
+      <input
+        type="date"
+        formControlName="startDate"
+        class="form-control"
+        id="startDate"
+        required
+      />
+    </div>
+    <br />
+    <div class="col-md-4">
+      <label for="endDate" class="form-label">Date de fin séjour</label>
+      <input
+        type="date"
+        formControlName="endDate"
+        class="form-control"
+        id="endDate"
+        required
+      />
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="reason" class="form-label">Raison du séjour</label>
+    <textarea
+      formControlName="reason"
+      class="form-control"
+      id="reason"
+      required
+    ></textarea>
+  </div>
+  <div class="col-md-4">
+    <label for="specialty" class="form-label">Spécialité médecine</label>
+    <select
+      id="specialty"
+      formControlName="specialty"
+      class="form-select"
+      required
+    >
+      >
+      <option selected disabled>Choisissez une spécialité</option>
+
+      <option>Cardiologie</option>
+      <option>Dermatologie</option>
+      <option>Neurologie</option>
+      <option>Autre</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label for="doctor" class="form-label">Docteur</label>
+    <select id="doctor" formControlName="doctor" class="form-select" required>
+      <option selected disabled>Choisissez un docteur</option>
+      <option>Dr. Dupont</option>
+      <option>Dr. Martin</option>
+      <option>Dr. Durand</option>
+      <option>Sans préférence</option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Valider</button>
+  </div>
+</form>
