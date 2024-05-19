@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TokenService {
+  getToken() {
+    throw new Error('Method not implemented.');
+  }
   private csrfToken: string | null = null;
 
   constructor() {}

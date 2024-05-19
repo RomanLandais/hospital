@@ -1,5 +1,10 @@
-<form class="row g-3" id="hospitalForm">
-  <div class="raw">
+<form
+  class="row g-3"
+  [formGroup]="newStayForm"
+  (ngSubmit)="onSignInSubmit()"
+  id="hospitalForm"
+>
+  <div class="row">
     <div class="col-md-4">
       <label for="startDate" class="form-label">Date de début séjour</label>
       <input
@@ -9,6 +14,16 @@
         id="startDate"
         required
       />
+      <div
+        *ngIf="
+          newStayForm?.get('startDate')?.invalid &&
+          (newStayForm?.get('startDate')?.dirty ||
+            newStayForm?.get('startDate')?.touched)
+        "
+        class="alert alert-danger"
+      >
+        Date de début est requise.
+      </div>
     </div>
     <br />
     <div class="col-md-4">
@@ -20,6 +35,16 @@
         id="endDate"
         required
       />
+      <div
+        *ngIf="
+          newStayForm?.get('endDate')?.invalid &&
+          (newStayForm?.get('endDate')?.dirty ||
+            newStayForm?.get('endDate')?.touched)
+        "
+        class="alert alert-danger"
+      >
+        Date de fin est requise.
+      </div>
     </div>
   </div>
   <div class="col-12">
@@ -30,6 +55,16 @@
       id="reason"
       required
     ></textarea>
+    <div
+      *ngIf="
+        newStayForm?.get('reason')?.invalid &&
+        (newStayForm?.get('reason')?.dirty ||
+          newStayForm?.get('reason')?.touched)
+      "
+      class="alert alert-danger"
+    >
+      Raison du séjour est requise.
+    </div>
   </div>
   <div class="col-md-4">
     <label for="specialty" class="form-label">Spécialité médecine</label>
@@ -39,14 +74,22 @@
       class="form-select"
       required
     >
-      >
       <option selected disabled>Choisissez une spécialité</option>
-
       <option>Cardiologie</option>
       <option>Dermatologie</option>
       <option>Neurologie</option>
       <option>Autre</option>
     </select>
+    <div
+      *ngIf="
+        newStayForm?.get('specialty')?.invalid &&
+        (newStayForm?.get('specialty')?.dirty ||
+          newStayForm?.get('specialty')?.touched)
+      "
+      class="alert alert-danger"
+    >
+      Spécialité médecine est requise.
+    </div>
   </div>
 
   <div class="col-md-4">
@@ -58,9 +101,25 @@
       <option>Dr. Durand</option>
       <option>Sans préférence</option>
     </select>
+    <div
+      *ngIf="
+        newStayForm?.get('doctor')?.invalid &&
+        (newStayForm?.get('doctor')?.dirty ||
+          newStayForm?.get('doctor')?.touched)
+      "
+      class="alert alert-danger"
+    >
+      Docteur est requis.
+    </div>
   </div>
 
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="newStayForm.invalid"
+    >
+      Valider
+    </button>
   </div>
 </form>

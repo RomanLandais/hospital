@@ -16,7 +16,7 @@ export class ComServerService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.post<any>(url, data);
+    return this.http.post<any>(url, data, { headers });
   }
 
   sendData(data: any, endpoint: string, authToken: string) {
@@ -36,6 +36,6 @@ export class ComServerService {
       Authorization: `Bearer ${authToken}`,
     });
 
-    return this.http.post<any>(url, data);
+    return this.http.post<any>(url, data, { headers });
   }
 }

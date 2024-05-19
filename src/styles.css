@@ -1,3 +1,10 @@
+header {
+  background-image: url(assets/image/hospital_header.jpg);
+  background-repeat: no-repeat;
+  background-position: 1% 63%;
+  background-size: cover;
+}
+
 body {
   background-image: url(assets/image/hospital_background_transparent.png);
   background-repeat: no-repeat;
