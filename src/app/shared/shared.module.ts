@@ -7,7 +7,7 @@ import { TokenService } from './services/auth/token.service';
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule],
-  exports: [HttpClientModule, CommonModule],
+  exports: [CommonModule],
   providers: [ComServerService, TokenService],
 })
 export class SharedModule {}

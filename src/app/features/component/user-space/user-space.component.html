@@ -1,1 +1,40 @@
-<p>user-space works!</p>
+<div class="container_global">
+  <div class="container">
+    <h2>Derniers séjours</h2>
+    <div *ngFor="let stay of lastStays" class="stay-card">
+      <h3>Date de début: {{ stay.startDate }}</h3>
+      <h3>Date de fin: {{ stay.endDate }}</h3>
+      <p>Raison du séjour: {{ stay.reason }}</p>
+      <p>Spécialité: {{ stay.specialty }}</p>
+      <p>Docteur: {{ stay.doctor }}</p>
+      <p>Prescription: {{ stay.prescription }}</p>
+      <p>Avis: {{ stay.review }}</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Séjours en cours</h2>
+    <div *ngFor="let stay of currentStays" class="stay-card">
+      <h3>Date de début: {{ stay.startDate }}</h3>
+      <h3>Date de fin: {{ stay.endDate }}</h3>
+      <p>Raison du séjour: {{ stay.reason }}</p>
+      <p>Spécialité: {{ stay.specialty }}</p>
+      <p>Docteur: {{ stay.doctor }}</p>
+      <p>Prescription: {{ stay.prescription }}</p>
+      <p>Avis: {{ stay.review }}</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Séjours à venir</h2>
+    <div *ngFor="let stay of upcomingStays" class="stay-card">
+      <h3>Date de début: {{ stay.startDate }}</h3>
+      <h3>Date de fin: {{ stay.endDate }}</h3>
+      <p>Raison du séjour: {{ stay.reason }}</p>
+      <p>Spécialité: {{ stay.specialty }}</p>
+      <p>Docteur: {{ stay.doctor }}</p>
+      <p>Prescription: {{ stay.prescription }}</p>
+      <p>Avis: {{ stay.review }}</p>
+    </div>
+  </div>
+</div>

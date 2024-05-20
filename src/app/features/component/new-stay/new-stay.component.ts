@@ -42,14 +42,8 @@ export class NewStayComponent implements OnInit {
     const token = this.tokenService.getCsrfToken();
     console.log('token send', this.tokenService.getCsrfToken());
 
-    if (token === null) {
-      // Redirect to login page
-      this.router.navigate(['/login']);
-      alert('Authentifiez-vous svp');
-      return;
-    }
     this.comServerService
-      .sendData(this.newStayForm.value, 'newStay', token)
+      .sendData(this.newStayForm.value, 'newStay', token!)
       .subscribe({
         next: (response) => {
           console.log(response);
