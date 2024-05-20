@@ -43,7 +43,7 @@ export class NewStayComponent implements OnInit {
     console.log('token send', this.tokenService.getCsrfToken());
 
     this.comServerService
-      .sendData(this.newStayForm.value, 'newStay', token!)
+      .sendData(this.newStayForm.value, 'newStay')
       .subscribe({
         next: (response) => {
           console.log(response);

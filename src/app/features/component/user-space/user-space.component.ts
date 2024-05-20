@@ -28,28 +28,22 @@ export class UserSpaceComponent implements OnInit {
 
   getLastStays() {
     const token = this.tokenService.getCsrfToken()!;
-    this.comServerService
-      .getData('lastStays', token)
-      .subscribe((data: any[]) => {
-        this.lastStays = data;
-      });
+    this.comServerService.getData('lastStays').subscribe((data: any[]) => {
+      this.lastStays = data;
+    });
   }
 
   getCurrentStays() {
     const token = this.tokenService.getCsrfToken()!;
-    this.comServerService
-      .getData('currentStays', token)
-      .subscribe((data: any[]) => {
-        this.currentStays = data;
-      });
+    this.comServerService.getData('currentStays').subscribe((data: any[]) => {
+      this.currentStays = data;
+    });
   }
 
   getUpcomingStays() {
     const token = this.tokenService.getCsrfToken()!;
-    this.comServerService
-      .getData('upcomingStays', token)
-      .subscribe((data: any[]) => {
-        this.upcomingStays = data;
-      });
+    this.comServerService.getData('upcomingStays').subscribe((data: any[]) => {
+      this.upcomingStays = data;
+    });
   }
 }

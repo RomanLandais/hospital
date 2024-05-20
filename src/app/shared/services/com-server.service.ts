@@ -30,10 +30,10 @@ export class ComServerService {
   /* --------------------------------------------------------------------------------------------------------------------------------
   Fonction pour envoyer des données au serveur
   -------------------------------------------------------------------------------------------------------------------------------- */
-  sendData(data: any, endpoint: string, authToken: string) {
+  sendData(data: any, endpoint: string) {
     const url = `https://localhost:3000/api/hospital/${endpoint}`;
-    /*         const authToken = this.tokenService.getCsrfToken();
-     */
+    const authToken = this.tokenService.getCsrfToken();
+
     const userId = this.tokenService.getUserId() || '';
 
     const headers = new HttpHeaders({
@@ -53,10 +53,10 @@ export class ComServerService {
   /* --------------------------------------------------------------------------------------------------------------------------------
   Fonction pour récupérer des données depuis le serveur
   -------------------------------------------------------------------------------------------------------------------------------- */
-  getData(endpoint: string, authToken: string): Observable<any> {
+  getData(endpoint: string): Observable<any> {
     const url = `https://localhost:3000/api/hospital/${endpoint}`;
-    /*     const authToken = this.tokenService.getCsrfToken();
-     */
+    const authToken = this.tokenService.getCsrfToken();
+
     const userId = this.tokenService.getUserId() || '';
 
     // Ajouter les headers avec le token d'authentification et userId
