@@ -35,6 +35,11 @@ export class ComServerService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`,
     });
+    console.log('Headers:');
+    headers.keys().forEach((name) => {
+      console.log(`${name}: ${headers.get(name)}`);
+    });
+    console.log('Data sent:', data); // Ajout du console.log pour afficher les données envoyées
 
     return this.http.post<any>(url, data, { headers });
   }

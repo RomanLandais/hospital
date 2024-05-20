@@ -1,11 +1,11 @@
 <form
   class="row g-3"
   [formGroup]="newStayForm"
-  (ngSubmit)="onSignInSubmit()"
+  (ngSubmit)="onNewStay()"
   id="hospitalForm"
 >
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="startDate" class="form-label">Date de début séjour</label>
       <input
         type="date"
@@ -26,7 +26,7 @@
       </div>
     </div>
     <br />
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="endDate" class="form-label">Date de fin séjour</label>
       <input
         type="date"
@@ -76,7 +76,7 @@
     >
       <option selected disabled>Choisissez une spécialité</option>
       <option>Cardiologie</option>
-      <option>Dermatologie</option>
+      <option>Psychiatre</option>
       <option>Neurologie</option>
       <option>Autre</option>
     </select>
@@ -97,8 +97,8 @@
     <select id="doctor" formControlName="doctor" class="form-select" required>
       <option selected disabled>Choisissez un docteur</option>
       <option>Dr. Dupont</option>
-      <option>Dr. Martin</option>
-      <option>Dr. Durand</option>
+      <option>Dr. Leclerc</option>
+      <option>Dr. Dubois</option>
       <option>Sans préférence</option>
     </select>
     <div

@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
+  // Connexion
   onSignInSubmit() {
     console.log(this.signInForm.value);
     this.comServerService
@@ -61,11 +61,11 @@ export class LoginComponent implements OnInit {
           console.log('Response:', response);
 
           // Extraire le token CSRF de la réponse
-          const csrfToken = response.csrfToken;
+          const token = response.token;
 
           // Stocker le token CSRF dans le service tokenService
-          this.tokenService.setCsrfToken(csrfToken);
-          console.log('CSRF Token:', this.tokenService.getCsrfToken());
+          this.tokenService.setCsrfToken(token);
+          console.log('Token received:', this.tokenService.getCsrfToken());
         },
         error: (error) => {
           console.error('Error:', error);
@@ -83,17 +83,17 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  // Enregistrement
   onSignUpSubmit() {
     console.log(this.signUpForm.value);
     this.comServerService
-      .sendDataLogin(this.signUpForm.value, 'signup')
+      .sendDataLogin(this.signUpForm.value, 'signUp')
       .subscribe({
         next: (response) => {
           console.log('Response:', response);
-          const csrfToken = response.csrfToken;
-
-          this.tokenService.setCsrfToken(csrfToken);
-          console.log('CSRF Token:', this.tokenService.getCsrfToken());
+          const token = response.token;
+          this.tokenService.setCsrfToken(token);
+          console.log('Token received:', this.tokenService.getCsrfToken());
         },
         error: (error) => {
           console.error('Error:', error);

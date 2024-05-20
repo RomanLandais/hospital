@@ -36,9 +36,12 @@ export class NewStayComponent implements OnInit {
       doctor: ['', Validators.required],
     });
   }
-  onSignInSubmit() {
+  onNewStay() {
     console.log(this.newStayForm.value);
+
     const token = this.tokenService.getCsrfToken();
+    console.log('token send', this.tokenService.getCsrfToken());
+
     if (token === null) {
       // Redirect to login page
       this.router.navigate(['/login']);
