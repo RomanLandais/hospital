@@ -13,7 +13,6 @@ export class TokenService {
 
   setCsrfToken(token: string) {
     sessionStorage.setItem(this.csrfTokenKey, token); //on force le stockage en session storage sinon le token se réinitialise à chaque changement de page
-    console.log('CSRF Token set:', token);
   }
 
   getCsrfToken(): string | null {
@@ -25,7 +24,6 @@ export class TokenService {
       alert('Veuillez-vous authentifier ou vous inscrire svp');
       throw new Error('Veuillez-vous authentifier ou vous inscrire svp');
     }
-    console.log('CSRF Token retrieved:', token);
     return token;
   }
 

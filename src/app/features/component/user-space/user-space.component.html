@@ -2,13 +2,16 @@
   <div class="container">
     <h2>Derniers séjours</h2>
     <div *ngFor="let stay of lastStays" class="stay-card">
-      <h3>Date de début: {{ stay.startDate }}</h3>
-      <h3>Date de fin: {{ stay.endDate }}</h3>
-      <p>Raison du séjour: {{ stay.reason }}</p>
-      <p>Spécialité: {{ stay.specialty }}</p>
-      <p>Docteur: {{ stay.doctor }}</p>
-      <p>Prescription: {{ stay.prescription }}</p>
-      <p>Avis: {{ stay.review }}</p>
+      <h3>Date de début: {{ stay.start_date }}</h3>
+      <h3>Date de fin: {{ stay.end_date }}</h3>
+      <p>Raison du séjour: {{ stay.stay_reason }}</p>
+      <p>Spécialité: {{ stay.doctor_specialty }}</p>
+      <p>Docteur: {{ stay.doctor_name }}</p>
+      <p>Prescription: {{ stay.consultation_description }}</p>
+      <p>Medicament: {{ stay.medicament_name }}</p>
+      <p>Date démarrage prescription: {{ stay.prescription_start_date }}</p>
+      <p>Date fin prescription: {{ stay.prescription_end_date }}</p>
+      <p>Posology: {{ stay.posology }}</p>
     </div>
   </div>
 

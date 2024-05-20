@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
           // Extraire le token CSRF de la réponse et le stocker dans le service
           const token = response.token;
           this.tokenService.setCsrfToken(token);
-          console.log('Token received:', this.tokenService.getCsrfToken());
 
           // Récupérer l'identifiant de l'utilisateur depuis la réponse et le stocker dans le service
           const userId = response.userId;
@@ -98,7 +97,6 @@ export class LoginComponent implements OnInit {
           console.log('Response:', response);
           const token = response.token;
           this.tokenService.setCsrfToken(token);
-          console.log('Token received:', this.tokenService.getCsrfToken());
 
           const userId = response.userId;
           console.log('User ID:', userId);
