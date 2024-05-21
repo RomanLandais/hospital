@@ -73,11 +73,15 @@
       formControlName="specialty"
       class="form-select"
       required
+      (change)="onSpecialtyChange()"
     >
       <option selected disabled>Choisissez une spécialité</option>
-      <option>Cardiologie</option>
-      <option>Psychiatre</option>
-      <option>Neurologie</option>
+      <option
+        *ngFor="let specialty of doctorSpecialties"
+        [value]="specialty.specialty"
+      >
+        {{ specialty.specialty }}
+      </option>
       <option>Autre</option>
     </select>
     <div
@@ -96,9 +100,9 @@
     <label for="doctor" class="form-label">Docteur</label>
     <select id="doctor" formControlName="doctor" class="form-select" required>
       <option selected disabled>Choisissez un docteur</option>
-      <option>Dr. Dupont</option>
-      <option>Dr. Leclerc</option>
-      <option>Dr. Dubois</option>
+      <option *ngFor="let doctor of selectedDoctors" [value]="doctor.id">
+        Dr. {{ doctor.displayName }}
+      </option>
       <option>Sans préférence</option>
     </select>
     <div

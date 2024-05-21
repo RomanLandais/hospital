@@ -17,6 +17,9 @@ import { SharedModule } from '../../../shared/shared.module';
 })
 export class NewStayComponent implements OnInit {
   newStayForm!: FormGroup;
+  nomsDoctors: { id: string; displayName: string; specialty: string }[] = [];
+  selectedDoctors: any[] = [];
+  doctorSpecialties: { specialty: string; doctors: any[] }[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +27,7 @@ export class NewStayComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadDoctors();
     this.newStayForm = this.fb.group({
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
@@ -32,6 +36,47 @@ export class NewStayComponent implements OnInit {
       doctor: ['', Validators.required],
     });
   }
+
+  loadDoctors(): void {
+    this.comServerService.getData('loadDoctors').subscribe((data: any) => {
+      if (data.doctors && Array.isArray(data.doctors)) {
+        this.nomsDoctors = data.doctors.map((doctor: any) => ({
+          id: doctor.id_doctor,
+          displayName: `${doctor.last_name}`,
+          specialty: doctor.specialty,
+        }));
+
+        // Regrouper les médecins par spécialité
+        this.doctorSpecialties = this.nomsDoctors.reduce(
+          (acc: any[], doctor: any) => {
+            const specialtyIndex = acc.findIndex(
+              (item: any) => item.specialty === doctor.specialty
+            );
+            if (specialtyIndex !== -1) {
+              acc[specialtyIndex].doctors.push(doctor);
+            } else {
+              acc.push({ specialty: doctor.specialty, doctors: [doctor] });
+            }
+            return acc;
+          },
+          []
+        );
+      } else {
+        console.error(
+          'Invalid data format: doctors property is missing or not an array'
+        );
+      }
+    });
+  }
+
+  onSpecialtyChange(): void {
+    const selectedSpecialty = this.newStayForm.get('specialty')?.value;
+    const specialty = this.doctorSpecialties.find(
+      (item) => item.specialty === selectedSpecialty
+    );
+    this.selectedDoctors = specialty ? specialty.doctors : [];
+  }
+
   onNewStay() {
     console.log(this.newStayForm.value);
 
