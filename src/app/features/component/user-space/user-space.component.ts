@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ComServerService } from '../../../shared/services/com-server.service';
-import { TokenService } from '../../../shared/services/auth/token.service';
 import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
@@ -13,12 +12,9 @@ import { SharedModule } from '../../../shared/shared.module';
 export class UserSpaceComponent implements OnInit {
   lastStays: any[] = [];
   currentStays: any[] = [];
-  upcomingStays: any[] = [];
+  comingStays: any[] = [];
 
-  constructor(
-    private comServerService: ComServerService,
-    private tokenService: TokenService
-  ) {}
+  constructor(private comServerService: ComServerService) {}
 
   ngOnInit(): void {
     this.getLastStays();
@@ -27,7 +23,6 @@ export class UserSpaceComponent implements OnInit {
   }
 
   getLastStays() {
-    const token = this.tokenService.getCsrfToken()!;
     this.comServerService.getData('lastStays').subscribe((data: any) => {
       if (data.lastStays && Array.isArray(data.lastStays)) {
         this.lastStays = data.lastStays;
@@ -41,16 +36,28 @@ export class UserSpaceComponent implements OnInit {
   }
 
   getCurrentStays() {
-    /*  const token = this.tokenService.getCsrfToken()!;
-    this.comServerService.getData('currentStays').subscribe((data: any[]) => {
-      this.currentStays = Object.values(data);
-    }); */
+    this.comServerService.getData('currentStays').subscribe((data: any) => {
+      if (data.currentStays && Array.isArray(data.currentStays)) {
+        this.currentStays = data.currentStays;
+        console.log('Current stays getMethod:', this.currentStays);
+      } else {
+        console.error(
+          'Invalid data format: currentStays property is missing or not an array'
+        );
+      }
+    });
   }
 
   getUpcomingStays() {
-    /* const token = this.tokenService.getCsrfToken()!;
-    this.comServerService.getData('upcomingStays').subscribe((data: any[]) => {
-      this.upcomingStays = Object.values(data);
-    }); */
+    this.comServerService.getData('comingStays').subscribe((data: any) => {
+      if (data.comingStays && Array.isArray(data.comingStays)) {
+        this.comingStays = data.comingStays;
+        console.log('coming stays getMethod:', this.comingStays);
+      } else {
+        console.error(
+          'Invalid data format: upcomingStays property is missing or not an array'
+        );
+      }
+    });
   }
 }
