@@ -1,1 +1,261 @@
-<p>admin-space works!</p>
+<div class="container_newForms">
+  <!-- Formulaire pour ajouter un docteur -->
+  <form
+    [formGroup]="newDoctorForm"
+    (ngSubmit)="onNewDoctorSubmit()"
+    class="new-doctor"
+    novalidate
+  >
+    <h5>Nouveau docteur</h5>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <label for="lastName" class="col-form-label">Nom</label>
+        <input
+          type="text"
+          formControlName="lastName"
+          class="form-control"
+          id="lastName"
+          required
+        />
+        <div
+          *ngIf="
+            newDoctorForm.controls['lastName'].touched &&
+            newDoctorForm.controls['lastName'].invalid
+          "
+          class="text-danger"
+        >
+          <div *ngIf="newDoctorForm.controls['lastName'].errors?.['required']">
+            Nom requis
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="firstName" class="col-form-label">Prénom</label>
+        <input
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          id="firstName"
+          required
+        />
+        <div
+          *ngIf="
+            newDoctorForm.controls['firstName'].touched &&
+            newDoctorForm.controls['firstName'].invalid
+          "
+          class="text-danger"
+        >
+          <div *ngIf="newDoctorForm.controls['firstName'].errors?.['required']">
+            Prénom requis
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <label for="specialty" class="col-form-label">Spécialité</label>
+        <input
+          type="text"
+          formControlName="specialty"
+          class="form-control"
+          id="specialty"
+          required
+        />
+        <div
+          *ngIf="
+            newDoctorForm.controls['specialty'].touched &&
+            newDoctorForm.controls['specialty'].invalid
+          "
+          class="text-danger"
+        >
+          <div *ngIf="newDoctorForm.controls['specialty'].errors?.['required']">
+            Spécialité requise
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="newDoctorForm.invalid"
+    >
+      Enregistrement
+    </button>
+  </form>
+
+  <!--  Formulaire pour ajouter un planning -->
+  <form
+    class="row g-2"
+    [formGroup]="newScheduleForm"
+    (ngSubmit)="onNewSchedule()"
+    id="ScheduleForm"
+    novalidate
+  >
+    <h5>Nouveau planning</h5>
+
+    <div class="row g-2">
+      <div class="col-md-3">
+        <label for="consultDate" class="form-label">Date de consultation</label>
+        <input
+          type="date"
+          formControlName="consultDate"
+          class="form-control"
+          id="consultDate"
+          required
+        />
+        <div
+          *ngIf="
+            newScheduleForm?.get('consultDate')?.invalid &&
+            (newScheduleForm?.get('consultDate')?.dirty ||
+              newScheduleForm?.get('consultDate')?.touched)
+          "
+          class="alert alert-danger"
+        >
+          Date requise
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="doctor" class="form-label">Docteur</label>
+        <select
+          id="doctor"
+          formControlName="doctor"
+          class="form-select"
+          required
+        >
+          <option selected disabled>Choisissez un docteur</option>
+          <option *ngFor="let nomDoctor of nomsDoctors" [value]="nomDoctor">
+            {{ nomDoctor }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            newScheduleForm?.get('doctor')?.invalid &&
+            (newScheduleForm?.get('doctor')?.dirty ||
+              newScheduleForm?.get('doctor')?.touched)
+          "
+          class="alert alert-danger"
+        >
+          Docteur est requis.
+        </div>
+      </div>
+    </div>
+    <div class="row g-2">
+      <div class="col-2">
+        <label for="patient1" class="form-label">Patient1</label>
+        <select
+          id="patient1"
+          formControlName="patient1"
+          class="form-select"
+          required
+        >
+          <option selected disabled>Choisissez</option>
+          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
+            {{ nomPatient }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            newScheduleForm?.get('patient1')?.invalid &&
+            (newScheduleForm?.get('patient1')?.dirty ||
+              newScheduleForm?.get('patient1')?.touched)
+          "
+          class="alert alert-danger"
+        >
+          Au moins un patient est requis.
+        </div>
+      </div>
+
+      <div class="col-2">
+        <label for="patient2" class="form-label">Patient2</label>
+        <select id="patient2" formControlName="patient2" class="form-select">
+          <option selected disabled>Choisissez</option>
+          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
+            {{ nomPatient }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-2">
+        <label for="patient3" class="form-label">Patient3</label>
+        <select id="patient3" formControlName="patient3" class="form-select">
+          <option selected disabled>Choisissez</option>
+          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
+            {{ nomPatient }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-2">
+        <label for="patient4" class="form-label">Patient4</label>
+        <select id="patient4" formControlName="patient4" class="form-select">
+          <option selected disabled>Choisissez</option>
+          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
+            {{ nomPatient }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-2">
+        <label for="patient5" class="form-label">Patient5</label>
+        <select id="patient5" formControlName="patient5" class="form-select">
+          <option selected disabled>Choisissez</option>
+          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
+            {{ nomPatient }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-12">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="newScheduleForm.invalid"
+      >
+        Valider
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="container_currentDoctor">
+  <!-- Conteneur pour afficher les docteurs -->
+  <div class="doctor-container">
+    <h5>Liste docteurs actuels</h5>
+    <div *ngFor="let doctor of doctors" class="row g-2">
+      <div class="col-md-6">
+        <label class="col-form-label">Nom:</label>
+        <p>{{ doctor.lastName }}</p>
+      </div>
+      <div class="col-md-6">
+        <label class="col-form-label">Prénom:</label>
+        <p>{{ doctor.firstName }}</p>
+      </div>
+      <div class="col-md-6">
+        <label class="col-form-label">Spécialité:</label>
+        <p>{{ doctor.specialty }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conteneur pour  les plannings -->
+  <div class="schedule-container">
+    <h5>Planning docteur</h5>
+    <div *ngFor="let schedule of schedules" class="row g-2">
+      <div class="col-md-3">
+        <label class="form-label">Date de consultation:</label>
+        <p>{{ schedule.consultDate }}</p>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Docteur:</label>
+        <p>{{ schedule.doctor }}</p>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Patients à consulter:</label>
+        <ul>
+          <li *ngFor="let patient of schedule.patients">{{ patient }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

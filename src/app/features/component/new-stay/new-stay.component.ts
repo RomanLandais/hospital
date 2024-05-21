@@ -6,8 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ComServerService } from '../../../shared/services/com-server.service';
-import { TokenService } from '../../../shared/services/auth/token.service';
-import { Router } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
@@ -22,9 +20,7 @@ export class NewStayComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private comServerService: ComServerService,
-    private tokenService: TokenService,
-    private router: Router
+    private comServerService: ComServerService
   ) {}
 
   ngOnInit() {
@@ -38,9 +34,6 @@ export class NewStayComponent implements OnInit {
   }
   onNewStay() {
     console.log(this.newStayForm.value);
-
-    const token = this.tokenService.getCsrfToken();
-    console.log('token send', this.tokenService.getCsrfToken());
 
     this.comServerService
       .sendData(this.newStayForm.value, 'newStay')

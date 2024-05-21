@@ -1,0 +1,20 @@
+.container_newForms,
+.container_currentDoctor {
+  display: flex;
+  justify-content: space-around;
+}
+
+form {
+  padding: 1rem;
+  margin-right: 1rem;
+  border: 2px solid #8c8c8c;
+}
+
+h5 {
+  text-align: center;
+  text-decoration: underline;
+}
+.doctor-container,
+.schedule-container {
+  margin-top: 1rem;
+}
