@@ -18,3 +18,8 @@ h5 {
 .schedule-container {
   margin-top: 1rem;
 }
+
+.patient_container {
+  display: flex;
+  justify-content: space-between;
+}

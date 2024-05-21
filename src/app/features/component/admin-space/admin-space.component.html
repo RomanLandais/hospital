@@ -96,7 +96,7 @@
 
     <div class="row g-2">
       <div class="col-md-3">
-        <label for="consultDate" class="form-label">Date de consultation</label>
+        <label for="consultDate" class="form-label">Date consultation</label>
         <input
           type="date"
           formControlName="consultDate"
@@ -124,8 +124,11 @@
           required
         >
           <option selected disabled>Choisissez un docteur</option>
-          <option *ngFor="let nomDoctor of nomsDoctors" [value]="nomDoctor">
-            {{ nomDoctor }}
+          <option
+            *ngFor="let nomDoctor of nomsDoctors"
+            [ngValue]="nomDoctor.id"
+          >
+            Dr. {{ nomDoctor.displayName }}
           </option>
         </select>
         <div
@@ -140,7 +143,7 @@
         </div>
       </div>
     </div>
-    <div class="row g-2">
+    <div class="row g-2 patient_container">
       <div class="col-2">
         <label for="patient1" class="form-label">Patient1</label>
         <select
@@ -149,9 +152,9 @@
           class="form-select"
           required
         >
-          <option selected disabled>Choisissez</option>
-          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
-            {{ nomPatient }}
+          <option value="" disabled selected hidden>Requis</option>
+          <option *ngFor="let patient of nomsPatients" [ngValue]="patient.id">
+            {{ patient.displayName }}
           </option>
         </select>
         <div
@@ -169,9 +172,9 @@
       <div class="col-2">
         <label for="patient2" class="form-label">Patient2</label>
         <select id="patient2" formControlName="patient2" class="form-select">
-          <option selected disabled>Choisissez</option>
-          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
-            {{ nomPatient }}
+          <option value="">optionnel</option>
+          <option *ngFor="let patient of nomsPatients" [ngValue]="patient.id">
+            {{ patient.displayName }}
           </option>
         </select>
       </div>
@@ -179,9 +182,9 @@
       <div class="col-2">
         <label for="patient3" class="form-label">Patient3</label>
         <select id="patient3" formControlName="patient3" class="form-select">
-          <option selected disabled>Choisissez</option>
-          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
-            {{ nomPatient }}
+          <option value="">optionnel</option>
+          <option *ngFor="let patient of nomsPatients" [ngValue]="patient.id">
+            {{ patient.displayName }}
           </option>
         </select>
       </div>
@@ -189,9 +192,9 @@
       <div class="col-2">
         <label for="patient4" class="form-label">Patient4</label>
         <select id="patient4" formControlName="patient4" class="form-select">
-          <option selected disabled>Choisissez</option>
-          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
-            {{ nomPatient }}
+          <option value="">optionnel</option>
+          <option *ngFor="let patient of nomsPatients" [ngValue]="patient.id">
+            {{ patient.displayName }}
           </option>
         </select>
       </div>
@@ -199,9 +202,9 @@
       <div class="col-2">
         <label for="patient5" class="form-label">Patient5</label>
         <select id="patient5" formControlName="patient5" class="form-select">
-          <option selected disabled>Choisissez</option>
-          <option *ngFor="let nomPatient of nomsPatients" [value]="nomPatient">
-            {{ nomPatient }}
+          <option value="">optionnel</option>
+          <option *ngFor="let patient of nomsPatients" [ngValue]="patient.id">
+            {{ patient.displayName }}
           </option>
         </select>
       </div>
@@ -216,46 +219,4 @@
       </button>
     </div>
   </form>
-</div>
-
-<div class="container_currentDoctor">
-  <!-- Conteneur pour afficher les docteurs -->
-  <div class="doctor-container">
-    <h5>Liste docteurs actuels</h5>
-    <div *ngFor="let doctor of doctors" class="row g-2">
-      <div class="col-md-6">
-        <label class="col-form-label">Nom:</label>
-        <p>{{ doctor.lastName }}</p>
-      </div>
-      <div class="col-md-6">
-        <label class="col-form-label">Prénom:</label>
-        <p>{{ doctor.firstName }}</p>
-      </div>
-      <div class="col-md-6">
-        <label class="col-form-label">Spécialité:</label>
-        <p>{{ doctor.specialty }}</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Conteneur pour  les plannings -->
-  <div class="schedule-container">
-    <h5>Planning docteur</h5>
-    <div *ngFor="let schedule of schedules" class="row g-2">
-      <div class="col-md-3">
-        <label class="form-label">Date de consultation:</label>
-        <p>{{ schedule.consultDate }}</p>
-      </div>
-      <div class="col-md-4">
-        <label class="form-label">Docteur:</label>
-        <p>{{ schedule.doctor }}</p>
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Patients à consulter:</label>
-        <ul>
-          <li *ngFor="let patient of schedule.patients">{{ patient }}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </div>
