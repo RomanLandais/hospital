@@ -1,43 +1,55 @@
 <div class="container_global">
-  <div class="container">
+  <div class="container_stay">
     <h2>Derniers séjours</h2>
-    <div *ngFor="let stay of lastStays" class="stay-card">
-      <h3>Date de début: {{ stay.start_date }}</h3>
-      <h3>Date de fin: {{ stay.end_date }}</h3>
-      <p>Raison du séjour: {{ stay.stay_reason }}</p>
-      <p>Spécialité: {{ stay.doctor_specialty }}</p>
-      <p>Docteur: {{ stay.doctor_name }}</p>
-      <p>Prescription: {{ stay.consultation_description }}</p>
-      <p>Medicament: {{ stay.medicament_name }}</p>
-      <p>Date démarrage prescription: {{ stay.prescription_start_date }}</p>
-      <p>Date fin prescription: {{ stay.prescription_end_date }}</p>
-      <p>Posology: {{ stay.posology }}</p>
+    <div class="container">
+      <div *ngFor="let stay of lastStays" class="stay-scroll">
+        <p>Date de début: {{ stay.start_date }}</p>
+        <p>Date de fin: {{ stay.end_date }}</p>
+        <p>Raison du séjour: {{ stay.stay_reason }}</p>
+        <p>Spécialité: {{ stay.doctor_specialty }}</p>
+        <p>Docteur: {{ stay.doctor_name }}</p>
+        <p>Prescription: {{ stay.consultation_description }}</p>
+        <p>Medicament: {{ stay.medicament_name }}</p>
+        <p>Date démarrage prescription: {{ stay.prescription_start_date }}</p>
+        <p>Date fin prescription: {{ stay.prescription_end_date }}</p>
+        <p>Posology: {{ stay.posology }}</p>
+      </div>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container_stay">
     <h2>Séjours en cours</h2>
-    <div *ngFor="let stay of currentStays" class="stay-card">
-      <h3>Date de début: {{ stay.startDate }}</h3>
-      <h3>Date de fin: {{ stay.endDate }}</h3>
-      <p>Raison du séjour: {{ stay.reason }}</p>
-      <p>Spécialité: {{ stay.specialty }}</p>
-      <p>Docteur: {{ stay.doctor }}</p>
-      <p>Prescription: {{ stay.prescription }}</p>
-      <p>Avis: {{ stay.review }}</p>
+    <div class="container">
+      <div class="stay-scroll" *ngFor="let stay of currentStays">
+        <p>Date de début: {{ stay.start_date }}</p>
+        <p>Date de fin: {{ stay.end_date }}</p>
+        <p>Raison du séjour: {{ stay.stay_reason }}</p>
+        <p>Spécialité: {{ stay.doctor_specialty }}</p>
+        <p>Docteur: {{ stay.doctor_name }}</p>
+        <p>Prescription: {{ stay.consultation_description }}</p>
+        <p>Medicament: {{ stay.medicament_name }}</p>
+        <p>Date démarrage prescription: {{ stay.prescription_start_date }}</p>
+        <p>Date fin prescription: {{ stay.prescription_end_date }}</p>
+        <p>Posology: {{ stay.posology }}</p>
+      </div>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container_stay">
     <h2>Séjours à venir</h2>
-    <div *ngFor="let stay of upcomingStays" class="stay-card">
-      <h3>Date de début: {{ stay.startDate }}</h3>
-      <h3>Date de fin: {{ stay.endDate }}</h3>
-      <p>Raison du séjour: {{ stay.reason }}</p>
-      <p>Spécialité: {{ stay.specialty }}</p>
-      <p>Docteur: {{ stay.doctor }}</p>
-      <p>Prescription: {{ stay.prescription }}</p>
-      <p>Avis: {{ stay.review }}</p>
+    <div class="container">
+      <div *ngFor="let stay of upcomingStays" class="stay-scroll">
+        <p>Date de début: {{ stay.start_date }}</p>
+        <p>Date de fin: {{ stay.end_date }}</p>
+        <p>Raison du séjour: {{ stay.stay_reason }}</p>
+        <p>Spécialité: {{ stay.doctor_specialty }}</p>
+        <p>Docteur: {{ stay.doctor_name }}</p>
+        <p>Prescription: {{ stay.consultation_description }}</p>
+        <p>Medicament: {{ stay.medicament_name }}</p>
+        <p>Date démarrage prescription: {{ stay.prescription_start_date }}</p>
+        <p>Date fin prescription: {{ stay.prescription_end_date }}</p>
+        <p>Posology: {{ stay.posology }}</p>
+      </div>
     </div>
   </div>
 </div>

@@ -28,22 +28,29 @@ export class UserSpaceComponent implements OnInit {
 
   getLastStays() {
     const token = this.tokenService.getCsrfToken()!;
-    this.comServerService.getData('lastStays').subscribe((data: any[]) => {
-      this.lastStays = data;
+    this.comServerService.getData('lastStays').subscribe((data: any) => {
+      if (data.lastStays && Array.isArray(data.lastStays)) {
+        this.lastStays = data.lastStays;
+        console.log('Last stays getMethod:', this.lastStays);
+      } else {
+        console.error(
+          'Invalid data format: lastStays property is missing or not an array'
+        );
+      }
     });
   }
 
   getCurrentStays() {
-    const token = this.tokenService.getCsrfToken()!;
+    /*  const token = this.tokenService.getCsrfToken()!;
     this.comServerService.getData('currentStays').subscribe((data: any[]) => {
-      this.currentStays = data;
-    });
+      this.currentStays = Object.values(data);
+    }); */
   }
 
   getUpcomingStays() {
-    const token = this.tokenService.getCsrfToken()!;
+    /* const token = this.tokenService.getCsrfToken()!;
     this.comServerService.getData('upcomingStays').subscribe((data: any[]) => {
-      this.upcomingStays = data;
-    });
+      this.upcomingStays = Object.values(data);
+    }); */
   }
 }

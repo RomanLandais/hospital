@@ -1,6 +1,30 @@
 .container_global {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
   height: 100vh;
+}
+
+.container_stay {
+  margin-top: 1rem;
+  border: 2px solid #c1c1c1;
+}
+
+.container {
+  overflow-y: auto;
+  max-height: 88%;
+}
+
+.stay-scroll {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #000000;
+}
+
+.stay_card {
+  margin-top: 1rem;
+  border-top: 1 px solid #fffdfd;
+}
+
+h2 {
+  text-align: center;
+  padding-bottom: 1rem;
 }
