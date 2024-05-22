@@ -53,13 +53,10 @@ export class LoginComponent implements OnInit {
   }
   // Connexion
   onSignInSubmit() {
-    console.log(this.signInForm.value);
     this.comServerService
       .sendDataLogin(this.signInForm.value, 'signIn')
       .subscribe({
         next: (response) => {
-          console.log('Response:', response);
-
           // Extraire le token CSRF de la réponse et le stocker dans le service
           const token = response.token;
           this.tokenService.setCsrfToken(token);
@@ -93,19 +90,15 @@ export class LoginComponent implements OnInit {
 
   // Enregistrement
   onSignUpSubmit() {
-    console.log(this.signUpForm.value);
     this.comServerService
       .sendDataLogin(this.signUpForm.value, 'signUp')
       .subscribe({
         next: (response) => {
-          console.log('Response:', response);
           const token = response.token;
           this.tokenService.setCsrfToken(token);
 
           const userId = response.userId;
-          console.log('User ID:', userId);
           this.tokenService.setUserId(userId);
-          console.log('User ID register:', this.tokenService.getUserId());
         },
         error: (error) => {
           console.error('Error:', error);

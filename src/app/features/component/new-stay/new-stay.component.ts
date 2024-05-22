@@ -80,13 +80,10 @@ export class NewStayComponent implements OnInit {
   }
 
   onNewStay() {
-    console.log(this.newStayForm.value);
-
     this.comServerService
       .sendData(this.newStayForm.value, 'newStay')
       .subscribe({
         next: (response) => {
-          console.log(response);
           alert('Votre demande de séjour a été enregistrée');
         },
         error: (error) => {

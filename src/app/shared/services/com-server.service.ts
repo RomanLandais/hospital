@@ -41,11 +41,7 @@ export class ComServerService {
       Authorization: `Bearer ${authToken}`,
       'X-User-Id': userId,
     });
-    console.log('Headers:');
-    headers.keys().forEach((name) => {
-      console.log(`${name}: ${headers.get(name)}`);
-    });
-    console.log('Data sent:', data); // Ajout du console.log pour afficher les données envoyées
+    headers.keys().forEach((name) => {});
 
     return this.http.post<any>(url, data, { headers });
   }
@@ -68,9 +64,7 @@ export class ComServerService {
 
     // Effectuer la requête HTTP GET avec les headers
     return this.http.get<any>(url, { headers }).pipe(
-      tap((data) => {
-        console.log('Data received:', data); // Afficher les données reçues
-      }),
+      tap((data) => {}),
       catchError((error) => {
         console.error('Error fetching data:', error);
         return throwError(() => error);

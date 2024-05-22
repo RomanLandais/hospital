@@ -26,7 +26,6 @@ export class UserSpaceComponent implements OnInit {
     this.comServerService.getData('lastStays').subscribe((data: any) => {
       if (data.lastStays && Array.isArray(data.lastStays)) {
         this.lastStays = data.lastStays;
-        console.log('Last stays getMethod:', this.lastStays);
       } else {
         console.error(
           'Invalid data format: lastStays property is missing or not an array'
@@ -39,7 +38,6 @@ export class UserSpaceComponent implements OnInit {
     this.comServerService.getData('currentStays').subscribe((data: any) => {
       if (data.currentStays && Array.isArray(data.currentStays)) {
         this.currentStays = data.currentStays;
-        console.log('Current stays getMethod:', this.currentStays);
       } else {
         console.error(
           'Invalid data format: currentStays property is missing or not an array'
@@ -52,7 +50,6 @@ export class UserSpaceComponent implements OnInit {
     this.comServerService.getData('comingStays').subscribe((data: any) => {
       if (data.comingStays && Array.isArray(data.comingStays)) {
         this.comingStays = data.comingStays;
-        console.log('coming stays getMethod:', this.comingStays);
       } else {
         console.error(
           'Invalid data format: upcomingStays property is missing or not an array'

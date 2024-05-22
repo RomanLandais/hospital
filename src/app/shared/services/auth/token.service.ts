@@ -38,7 +38,6 @@ export class TokenService {
 
   setAdmin(admin: string) {
     sessionStorage.setItem(this.admin, admin);
-    console.log('Admin:', admin);
   }
 
   getAdmin(): string | null {
@@ -47,7 +46,6 @@ export class TokenService {
 
   setSecretary(secretary: string) {
     sessionStorage.setItem(this.secretary, secretary);
-    console.log('Secretary:', secretary);
   }
 
   getSecretary(): string | null {

@@ -68,12 +68,10 @@ export class AdminSpaceComponent implements OnInit {
   }
 
   onNewDoctorSubmit(): void {
-    console.log(this.newDoctorForm.value);
     this.comServerService
       .sendData(this.newDoctorForm.value, 'newDoctor')
       .subscribe({
         next: (response) => {
-          console.log(response);
           alert('Votre médecin a été enregistrée');
         },
         error: (error) => {
@@ -83,12 +81,10 @@ export class AdminSpaceComponent implements OnInit {
   }
 
   onNewSchedule(): void {
-    console.log(this.newScheduleForm.value);
     this.comServerService
       .sendData(this.newScheduleForm.value, 'newSchedule')
       .subscribe({
         next: (response) => {
-          console.log(response);
           alert('Votre planning a été enregistrée');
         },
         error: (error) => {
