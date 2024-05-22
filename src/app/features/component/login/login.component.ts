@@ -64,11 +64,15 @@ export class LoginComponent implements OnInit {
           const token = response.token;
           this.tokenService.setCsrfToken(token);
 
+          const admin = response.isAdmin;
+          this.tokenService.setAdmin(admin);
+
+          const secretary = response.isSecretary;
+          this.tokenService.setSecretary(secretary);
+
           // Récupérer l'identifiant de l'utilisateur depuis la réponse et le stocker dans le service
           const userId = response.userId;
-          console.log('User ID received:', userId);
           this.tokenService.setUserId(userId);
-          console.log('User ID register:', this.tokenService.getUserId());
         },
 
         error: (error) => {

@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 export class TokenService {
   private csrfTokenKey = 'csrfToken';
   private userIdKey = 'userId';
-
+  private admin = 'admin';
+  private secretary = 'secretary';
   constructor(private http: HttpClient, private router: Router) {}
 
   setCsrfToken(token: string) {
@@ -33,5 +34,23 @@ export class TokenService {
 
   getUserId(): string | null {
     return sessionStorage.getItem(this.userIdKey);
+  }
+
+  setAdmin(admin: string) {
+    sessionStorage.setItem(this.admin, admin);
+    console.log('Admin:', admin);
+  }
+
+  getAdmin(): string | null {
+    return sessionStorage.getItem(this.admin);
+  }
+
+  setSecretary(secretary: string) {
+    sessionStorage.setItem(this.secretary, secretary);
+    console.log('Secretary:', secretary);
+  }
+
+  getSecretary(): string | null {
+    return sessionStorage.getItem(this.secretary);
   }
 }

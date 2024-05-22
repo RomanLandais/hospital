@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ComServerService } from '../../../shared/services/com-server.service';
 import { SharedModule } from '../../../shared/shared.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-space',
@@ -25,14 +26,25 @@ export class AdminSpaceComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private comServerService: ComServerService
+    private comServerService: ComServerService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin();
     this.scheduleForm();
     this.doctorForm();
     this.loadDoctors();
     this.loadUser();
+  }
+  isAdmin(): void {
+    const admin = sessionStorage.getItem('admin');
+    if (admin !== 'true') {
+      alert(
+        "Vous n'êtes pas autorisé à accéder à cette page, identifiez-vous en tant qu'administrateur"
+      );
+      this.router.navigate(['/login']);
+    }
   }
 
   doctorForm(): void {
