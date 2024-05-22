@@ -49,14 +49,16 @@ export class NewStayComponent implements OnInit {
         // Regrouper les médecins par spécialité
         this.doctorSpecialties = this.nomsDoctors.reduce(
           (acc: any[], doctor: any) => {
-            const specialtyIndex = acc.findIndex(
+            const specialtyGroup = acc.find(
               (item: any) => item.specialty === doctor.specialty
             );
-            if (specialtyIndex !== -1) {
-              acc[specialtyIndex].doctors.push(doctor);
+
+            if (specialtyGroup) {
+              specialtyGroup.doctors.push(doctor);
             } else {
               acc.push({ specialty: doctor.specialty, doctors: [doctor] });
             }
+
             return acc;
           },
           []

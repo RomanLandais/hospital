@@ -117,7 +117,7 @@ export class AdminSpaceComponent implements OnInit {
       if (data.users && Array.isArray(data.users)) {
         this.nomsPatients = data.users.map((user: any) => ({
           id: user.id_user,
-          displayName: user.last_name,
+          displayName: `${user.last_name} ${user.name}`,
         }));
       } else {
         console.error(
