@@ -1,0 +1,27 @@
+image: node:latest
+
+stages:
+  - install
+  - test
+  - deploy
+
+# Étape d'installation
+install:
+  stage: install
+  script:
+    - npm install
+
+# Étape de test
+test:
+  stage: test
+  script:
+    - npm test
+
+# Étape de déploiement
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying front-end..."
+    # Ajoutez vos commandes de déploiement ici
+  only:
+    - main # Changez "main" par la branche de votre choix
