@@ -1,27 +1,49 @@
 image: node:latest
 
 stages:
-  - install
   - test
-  - deploy
+  - security
+  - functional_test
 
-# Étape d'installation
-install:
-  stage: install
-  script:
-    - npm install
-
-# Étape de test
+# Tests unitaires
 test:
   stage: test
   script:
+    - npm install
     - npm test
 
-# Étape de déploiement
-deploy:
-  stage: deploy
+# Analyse statique de sécurité (SAST)
+sast:
+  stage: security
   script:
-    - echo "Deploying front-end..."
-    # Ajoutez vos commandes de déploiement ici
-  only:
-    - main # Changez "main" par la branche de votre choix
+    - npm install -g sonarqube-scanner # Installation de l'outil SAST avec SonarQube Scanner
+    - sonar-scanner -Dsonar.projectKey=your_project_key -Dsonar.sources=src -Dsonar.host.url=http://your_sonarqube_instance
+  allow_failure: true
+
+# Analyse dynamqiue de sécurité (DAST)
+dast_with_owasp_zap:
+  stage: security
+  script:
+    - npm install -g zap-cli # Installation de l'outil OWASP ZAP CLI
+    - zap-cli start # Démarrage de l'instance OWASP ZAP
+    - zap-cli open-url http://localhost:4200/home # Ouvrir l'URL de l'application dans OWASP ZAP
+    - zap-cli spider http://localhost:4200/home # Lancer un spider pour découvrir les pages de l'application
+    - zap-cli active-scan http://localhost:4200/home # Lancer un scan actif pour trouver les vulnérabilités
+    - zap-cli report -o zap-report.html -f html # Générer un rapport HTML des résultats
+  artifacts:
+    paths:
+      - zap-report.html # Archiver le rapport HTML des résultats
+  allow_failure: true # Permettre à l'étape de continuer même en cas d'échec
+
+# Audit des dépendances (SCA)
+security_audit:
+  stage: security
+  script:
+    - npm audit
+  allow_failure: true
+
+# Tests fonctionnels
+functional_test:
+  stage: functional_test
+  script:
+    - npm run test:functional ../test/functional/test_fonctionnel.js
