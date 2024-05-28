@@ -2,9 +2,9 @@ Ce projet a été développé sous JS avec le framework Angular.
 
 Instruction déploiement local application :
 
-- clôner le dépôt GitHub
+- cloner le dépôt GitHub
 
-- installer Angular Cli si non présent : npm install -g @angular/cli
+- installer Angular Cli si non présent, dans le terminal de commande exécuter : npm install -g @angular/cli
 
 - installer les dépendances : npm install 
 
@@ -12,7 +12,8 @@ Instruction déploiement local application :
 
 - pour le déploiement en production : ng build --prod
 
-------------------------------------------------- Informations complémentaires sur cette application Angular --------------------------------------------------------------------
+
+------------------------------- Informations complémentaires sur cette application Angular --------------------------------------------------------------------
 
 # HospitalWebApp
 
